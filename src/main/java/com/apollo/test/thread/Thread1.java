@@ -26,13 +26,24 @@ public class Thread1 extends Thread {
     }
 
     public static void main(String[] args) {
+
         Thread1 thread1 = new Thread1();
         Thread1 thread2 = new Thread1();
         thread1.setName("A");
         thread2.setName("B");
-
         thread1.start();
         thread2.start();
+        try {
+            thread1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         System.out.println(Thread.currentThread().getName() + " thread: end.");
     }
 }
